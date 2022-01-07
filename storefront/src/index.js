@@ -12,44 +12,56 @@ import {
 } from "@apollo/client"
 
 const client = new ApolloClient({
-  uri: 'https://48p1r2roz4.sse.codesandbox.io',
+  uri: 'http://localhost:4000',
   cache: new InMemoryCache()
 })
 
 client
   .query({
     query: gql`
-      query GetRates {
-        rates(currency: "USD") {
-          currency
+      query {
+       categories {
+         products{
+           id
+          }
         }
       }
-    `
+      `
   })
   .then(result => console.log(result));
 
-  const EXCHANGE_RATES = gql`
-  query GetExchangeRates {
-    rates(currency: "USD") {
-      currency
-      rate
+//   const EXCHANGE_RATES = gql`
+//   query GetExchangeRates {
+//     rates(currency: "USD") {
+//       currency
+//       rate
+//     }
+//   }
+// `;
+
+  const STOREFRONT_INFO = gql `
+  query {
+    categories {
+      name
+      products {
+        name
+        inStock
+        description
+      }
     }
   }
-`;
+  `
 
 export function ExchangeRates() {
-  const { loading, error, data } = useQuery(EXCHANGE_RATES);
+  const { loading, error, data } = useQuery(STOREFRONT_INFO);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
 
-  return data.rates.map(({ currency, rate }) => (
-    <div key={currency}>
-      <p>
-        {currency}: {rate}
-      </p>
-    </div>
-  ));
+  return data.categories.map(({name}) => (
+      <p>{name}</p>
+    )
+  )
 }
   
   render(
