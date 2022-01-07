@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
+import App from './App'
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {
   ApolloClient,
@@ -16,40 +16,31 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 })
 
+// SEE in console
 client
   .query({
     query: gql`
-      query {
-       categories {
-         products{
-           id
-          }
+    query {
+      categories {
+        name,
+        products {
+          name
         }
       }
+     }
       `
   })
   .then(result => console.log(result));
 
-//   const EXCHANGE_RATES = gql`
-//   query GetExchangeRates {
-//     rates(currency: "USD") {
-//       currency
-//       rate
-//     }
-//   }
-// `;
-
   const STOREFRONT_INFO = gql `
   query {
     categories {
-      name
+      name,
       products {
         name
-        inStock
-        description
       }
     }
-  }
+   }
   `
 
 export function ExchangeRates() {
@@ -58,8 +49,11 @@ export function ExchangeRates() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
 
-  return data.categories.map(({name}) => (
-      <p>{name}</p>
+  return data.categories.map(({name, products}) => (
+    <div>
+      <h3>{name}</h3>
+      {products.map(({name}) => <p>{name}</p>)}
+    </div>
     )
   )
 }
