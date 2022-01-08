@@ -1,8 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
 
-import {ExchangeRates} from './index'
-import Navbar from './Components/Navbar'
+// import { GetStoreInfoNav } from './index'
+import { Navbar } from './Components/Navbar'
+import Another from './Components/Another';
 
 
 function App() {
@@ -10,8 +11,8 @@ function App() {
   return (
     <>
       <h2>My first Apollo app 🚀</h2>
-      <ExchangeRates />
       <Navbar />
+      <Another />
     </>
   );
 }

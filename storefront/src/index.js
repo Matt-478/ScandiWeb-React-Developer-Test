@@ -17,54 +17,53 @@ const client = new ApolloClient({
 })
 
 // SEE in console
-client
-  .query({
+  client.query({
     query: gql`
-    query {
-      categories {
-        name,
-        products {
-          name
+      query {
+        categories {
+          name,
+          products {
+            name
+            id
+          }
         }
-      }
-     }
-      `
+       }
+        `
   })
   .then(result => console.log(result));
 
-  const STOREFRONT_INFO = gql `
-  query {
-    categories {
-      name,
-      products {
-        name
-      }
-    }
-   }
-  `
+  // const STOREFRONT_INFO_NAV = gql `
+  //   query {
+  //     categories {
+  //       name,
+  //       products {
+  //         name
+  //         id
+  //       }
+  //     }
+  //    }
+  //   `
 
-export function ExchangeRates() {
-  const { loading, error, data } = useQuery(STOREFRONT_INFO);
+// export function GetStoreInfoNav() {
+//   const { loading, error, data } = useQuery(STOREFRONT_INFO_NAV);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
+//   if (loading) return <p>Loading...</p>;
+//   if (error) return <p>Error :(</p>;
 
-  return data.categories.map(({name, products}) => (
-    <div>
-      <h3>{name}</h3>
-      {products.map(({name}) => <p>{name}</p>)}
-    </div>
-    )
-  )
-}
+//   return data.categories.map(({name, products}) => (
+//     <div>
+//       <h3>{name}</h3>
+//       {products.map(({name, id}) => <p key={id}>{name}</p>)}
+//     </div>
+//     ))}
   
   render(
     <ApolloProvider client={client}>
-      <App />
+      <App/>
     </ApolloProvider>,
-    document.getElementById('root'),
+    document.getElementById('root')
   );
-
+  
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
