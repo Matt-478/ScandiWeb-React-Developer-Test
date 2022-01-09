@@ -3,8 +3,23 @@ body{
 }
 
 /* NAVBAR */
+.navbar-general {
+display: inline-flex;
+}
+
 .navbar-categories {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+/* NAVBAR LOGO */
+.nav-logo-general {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav-logo-arrow {
+  position: absolute;
 }
