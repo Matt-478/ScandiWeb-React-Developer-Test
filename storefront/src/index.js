@@ -17,32 +17,20 @@ const client = new ApolloClient({
 })
 
 // SEE in console
-  client.query({
-    query: gql`
-      query {
-        categories {
-          name,
-          products {
-            name
-            id
-          }
-        }
-       }
-        `
-  })
-  .then(result => console.log(result));
-
-  // const STOREFRONT_INFO_NAV = gql `
-  //   query {
-  //     categories {
-  //       name,
-  //       products {
-  //         name
-  //         id
+  // client.query({
+  //   query: gql`
+  //     query {
+  //       categories {
+  //         name,
+  //         products {
+  //           name
+  //           id
+  //         }
   //       }
-  //     }
-  //    }
-  //   `
+  //      }
+  //     `
+  // })
+  // .then(result => console.log(result));
 
 // export function GetStoreInfoNav() {
 //   const { loading, error, data } = useQuery(STOREFRONT_INFO_NAV);
@@ -63,7 +51,7 @@ const client = new ApolloClient({
     </ApolloProvider>,
     document.getElementById('root')
   );
-  
+
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals

@@ -1,98 +1,38 @@
-import React from 'react'
-import { useQuery, gql } from '@apollo/client'
-import { useEffect, useState } from 'react'
+import React, {useState} from 'react'
+import { useQuery, graphql, gql } from '@apollo/client'
 
-const GET_DOGS = gql`
+const GET_NAME = gql`
   query {
    categories {
-     name,
-     products {
-       name
-       id
-     }
+    name
    }
   }
-`;
+`
 
-export function Navbar() {
-  const { loading, error, data } = useQuery(GET_DOGS);
+function Navbar() {
+  const { loading, error, data } = useQuery(GET_NAME);
 
-  if (loading) return 'Loading...';
-  if (error) return `Error! ${error.message}`;
+  if (loading) {
+    <h2>Loading...</h2>
+  }
+
+  if (error) {
+    <h2>ERROR...</h2>
+  }
+
+  if (data) {
+    console.log(data)
+  }
+
   return (
-    <div>
-      <p>BS</p>
-      {
-        data && data.categories.map(() => {
-          <p>yeah, babes</p>
-          })
-      }
-      {console.log(data.categories)}
+    <div className="navbar-general">
+      <div className="navbar-categories">
+        {data && data.categories.map(({name}) => {
+          return <p>{name}</p>
+        })}
+      </div>
     </div>
   )
 }
 
-// export default Navbar
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const Navbar = () => {
-
-  //   useEffect(() => {
-  //     GetStoreInfoForNav()
-  //   }, [])
-  
-  //   const[navCategoryNames, setNavCategoryNames] = useState()
-  
-  //   const STOREFRONT_INFO_NAV = gql `
-  //     query {
-  //       categories {
-  //         name,
-  //         products {
-  //           name
-  //           id
-  //         }
-  //       }
-  //      }
-  //     `
-  
-  //   function GetStoreInfoForNav() {
-  //     const { loading, error, data } = useQuery(STOREFRONT_INFO_NAV);
-  
-  //     if (loading) return <p>Loading...</p>;
-  //     if (error) return <p>Error :(</p>;
-  //     setNavCategoryNames(data.categories) 
-  //   }
-  
-  //   return (
-  //     <>
-  //       Just the Navbar... for now
-  //       {console.log(navCategoryNames)}
-  //     </>
-  //   )
-  // }
+export default Navbar
