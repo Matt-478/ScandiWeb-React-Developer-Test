@@ -1,11 +1,13 @@
 body{
-
+/* needs padding */
 }
 
 /* NAVBAR */
 .navbar-general {
   display: flex;
   justify-content: space-between;
+
+  padding: 30px 100px;
 }
 
 .navbar-categories-general {
@@ -23,4 +25,17 @@ body{
 }
 .nav-logo-arrow {
   position: absolute;
+}
+
+.nav-right-side {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 60px;
+}
+
+.nav-currency {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
