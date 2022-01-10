@@ -4,10 +4,11 @@ body{
 
 /* NAVBAR */
 .navbar-general {
-display: inline-flex;
+  display: flex;
+  justify-content: space-between;
 }
 
-.navbar-categories {
+.navbar-categories-general {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
