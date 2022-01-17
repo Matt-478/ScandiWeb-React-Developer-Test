@@ -2,6 +2,11 @@ body{
 /* needs padding */
 }
 
+/* general-classes */
+.c-pointer {
+  cursor: pointer;
+}
+
 /* NAVBAR */
 .navbar-general {
   display: flex;
@@ -14,6 +19,13 @@ body{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
+  /* width: 120px; */
+  width: 9em;
+}
+
+.navbar-categories-general p {
+  cursor: pointer;
 }
 
 /* NAVBAR LOGO */
@@ -34,8 +46,12 @@ body{
   width: 60px;
 }
 
-.nav-currency {
+.nav-currency-group {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  cursor: pointer;
+  /* width: 80px; */
+  width: 2em;
 }
