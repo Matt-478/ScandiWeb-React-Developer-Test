@@ -5,12 +5,23 @@ const GET_NAME = gql`
   query {
    categories {
     name
+    products {
+      id
+      inStock
+    }
    }
   }
 `
 
 class Nabar extends React.Component{
    data  = useQuery(GET_NAME);
+
+  //   name = client.readQuery({
+  //   query: GET_NAME,
+  //   // variables: { // Provide any required variables here
+  //   //   id: 5,
+  //   // },
+  // });
 
    if (loading) {
     <h2>Loading...</h2>

@@ -1,10 +1,14 @@
 import React from 'react'
-import { useQuery, graphql, gql } from '@apollo/client'
+import { useQuery, graphql, gql, client } from '@apollo/client'
 
 const GET_NAME = gql`
   query {
    categories {
     name
+    products {
+      id
+      inStock
+    }
    }
   }
 `
@@ -22,6 +26,14 @@ function Navbar() {
 
   if (data) {
     console.log(data)
+  //   const name = client.readQuery({
+  //   query: GET_NAME
+  // })
+  // console.log(
+  //   client.readQuery({
+  //       query: GET_NAME
+  //     })
+  // )
   }
 
   return (

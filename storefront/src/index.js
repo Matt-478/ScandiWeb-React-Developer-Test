@@ -15,10 +15,11 @@ const client = new ApolloClient({
   uri: 'http://localhost:4000',
   cache: new InMemoryCache()
 })
+
   
   render(
     <ApolloProvider client={client}>
-      <App/>
+      <App />
     </ApolloProvider>,
     document.getElementById('root')
   );
