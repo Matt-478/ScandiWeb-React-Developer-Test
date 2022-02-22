@@ -1,19 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import { Query } from '@apollo/client/react/components'
+import { gql } from 'graphql-tag';
 
-import Navbar from './Components/Navbar'
-import Nabar from './Components/Nabar_2'
+const scandiWebQuery = gql`
+  query {
+    categories {
+      name
+      products {
+        name
+        inStock
+        description
+        gallery
+      }
+    }
+  }`
 
+export default class App extends Component {
+  render() {
+    return (
+      <div>
+        <Query query={scandiWebQuery}>
+          {
+            ({loading, error, data}) => {
+              if (loading) return <p>"Loading..."</p>
+              if (error) return <p>'Error... ${error.message}'</p>
 
-
-function App() {
-  return (
-    <>
-      <h2>My first Apollo app 🚀</h2>
-      <Navbar/>
-      {/* <Nabar /> */}
-    </>
-  );
+              return(
+                  <ul>
+                    {data.categories.map((category, i = category.index) => {
+                      return <li key={i}>{category.name}</li>
+                    })}
+                    {console.log(data)}
+                  </ul>
+                )
+            }
+          }
+        </Query>
+        
+      </div>
+    )
+  }
 }
-
-export default App;
