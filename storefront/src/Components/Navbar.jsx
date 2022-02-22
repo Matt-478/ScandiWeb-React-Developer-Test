@@ -1,38 +1,13 @@
 import React from 'react'
-import { useQuery, graphql, gql, client } from '@apollo/client'
 
-const GET_NAME = gql`
-  query {
-   categories {
-    name
-    products {
-      id
-      inStock
-    }
-   }
-  }
-`
-
-function Navbar() {
-  const { loading, error, data } = useQuery(GET_NAME);
-
-  if (loading) {
-    <h2>Loading...</h2>
-  }
-
-  if (error) {
-    <h2>ERROR...</h2>
-  }
-
-  if (data) {
-    console.log(data)
-  }
-
+function Navbar({data}) {
+  console.log(data)
+  
   return (
     <div className="navbar-general">
       <div className="navbar-categories-general">
-        {data && data.categories.map(({name}) => {
-          return <span><p>{name}</p></span>
+        {data && data.categories.map((name, i = name.index) => {
+          return <span key={i}><p>{name.name}</p></span>
         })}
       </div>
 

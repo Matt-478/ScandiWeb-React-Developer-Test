@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Query } from '@apollo/client/react/components'
 import { gql } from 'graphql-tag';
+import Navbar from './Components/Navbar'
 
 const scandiWebQuery = gql`
   query {
@@ -26,12 +27,8 @@ export default class App extends Component {
               if (error) return <p>'Error... ${error.message}'</p>
 
               return(
-                  <ul>
-                    {data.categories.map((category, i = category.index) => {
-                      return <li key={i}>{category.name}</li>
-                    })}
-                    {console.log(data)}
-                  </ul>
+                    <Navbar data={data}/>
+                    // console.log(data)
                 )
             }
           }
