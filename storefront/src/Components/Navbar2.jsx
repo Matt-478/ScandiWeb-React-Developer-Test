@@ -1,38 +1,14 @@
-import React from 'react'
-import { useQuery, graphql, gql, client } from '@apollo/client'
+import React, { Component } from 'react'
 
-const GET_NAME = gql`
-  query {
-   categories {
-    name
-    products {
-      id
-      inStock
-    }
-   }
-  }
-`
+export default class Navbar2 extends Component {
+  render(props) {
+    console.log(this.props.data)
 
-function Navbar() {
-  const { loading, error, data } = useQuery(GET_NAME);
-
-  if (loading) {
-    <h2>Loading...</h2>
-  }
-
-  if (error) {
-    <h2>ERROR...</h2>
-  }
-
-  if (data) {
-    console.log(data)
-  }
-
-  return (
-    <div className="navbar-general">
+    return (
+      <div className="navbar-general">
       <div className="navbar-categories-general">
-        {data && data.categories.map(({name}) => {
-          return <span><p>{name}</p></span>
+        {this.props.data && this.props.data.categories.map((name, i = name.index) => {
+          return <span key={i}><p>{name.name}</p></span>
         })}
       </div>
 
@@ -44,8 +20,8 @@ function Navbar() {
            <path d="M32.0988 29.6014C32.1313 29.9985 31.8211 30.339 31.4268 30.339H1.59438C1.2009 30.339 0.890922 30.0002 0.922082 29.6037L3.06376 2.34718C3.09168 1.9927 3.38426 1.71973 3.73606 1.71973H29.1958C29.5468 1.71973 29.8391 1.99161 29.868 2.34499L32.0988 29.6014Z" fill="url(#paint0_linear_150_363)"/>
            <defs>
            <linearGradient id="paint0_linear_150_363" x1="25.8733" y1="26.3337" x2="7.51325" y2="4.9008" gradientUnits="userSpaceOnUse">
-           <stop stop-color="#52D67A"/>
-           <stop offset="1" stop-color="#5AEE87"/>
+           <stop stopColor="#52D67A"/>
+           <stop offset="1" stopColor="#5AEE87"/>
            </linearGradient>
            </defs>
         </svg>
@@ -71,7 +47,7 @@ function Navbar() {
           {/* down arrow icon for selection 
           insert HTML select options here later*/}
           <select name="" id="">
-            <option selected>
+            <option defaultValue>
               {/* <svg width="8" height="4" viewBox="0 0 8 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 0.5L4 3.5L7 0.5" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
               </svg> */}
@@ -97,7 +73,6 @@ function Navbar() {
         </svg>
       </div>
     </div>
-  )
+    )
+  }
 }
-
-export default Navbar
