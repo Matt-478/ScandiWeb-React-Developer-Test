@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Query } from '@apollo/client/react/components'
 import { gql } from 'graphql-tag';
 import Navbar2 from './Components/Navbar2';
+import styles from './styles.css'
 
 const scandiWebQuery = gql`
   query {
