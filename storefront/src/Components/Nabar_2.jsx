@@ -14,7 +14,7 @@ const GET_NAME = gql`
 `
 
 class Nabar extends React.Component{
-   data  = useQuery(GET_NAME);
+  //  {loading, data}  = useQuery(GET_NAME);
 
   //   name = client.readQuery({
   //   query: GET_NAME,
@@ -34,17 +34,6 @@ class Nabar extends React.Component{
   if (data) {
     console.log(data)
   }
-
-	// constructor(){
-	// 	this.state={
-	// 		count :0
-	// 	};
-	// 	this.increase=this.increase.bind(this);
-	// }
-	
-// increase(){
-// 	this.setState({count : this.state.count +1});
-// }
 
 	render(){
 		return (
